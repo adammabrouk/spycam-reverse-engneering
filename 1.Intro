@@ -1,0 +1,64 @@
+# Setup and installation
+- First Make sure you enable developer mode on phone and have adb installed
+- Launch adb devices ( with sudo first time ) and make sure to validate public RSA key from the phone side
+
+
+# Extracting tha APK and performing static analysis
+- Try to list packages and grep for the keyword that isolates the APP
+
+```sh
+$ adb shell pm list packages | grep lookcam
+```
+
+This is the concerne package we're looking for
+
+package:com.shix.lookcam
+
+- Next we'll try to indentify the APK Path for that package
+
+```sh
+adb shell pm path com.shix.lookcam
+```
+
+This is the location on my phone ( ALready looking weird ) : 
+
+```
+/data/app/~~7xU8sC15t0F_ic-GGKFzHg==/com.shix.lookcam-N0VHORpkIPHMiCzq13pHNA==/base.apk
+```
+
+## Test setup
+
+### 3.1 Phone Plateform
+
+We are using a Samsung galaxy S10 emulated on Genymotion , Android version 11
+For app compatibility reasons we have to flash a zip that allows for apps that are ARM compatible
+to be installed on x86_64 architectures.
+
+Link : https://github.com/niizam/Genymotion_A11_libhoudini
+
+### 3.2 APK - Test Run
+
+Download page : https://apkpure.com/fr/lookcampro/com.shix.lookcam;
+
+### 3.3 Host Machine
+
+## Threat Analysis
+
+### 1. Static Analysis of the APK
+
+Lets try Jadx-Gui to analyse the static code of the apk
+
+First you need to install JRE / JDK
+
+```sh
+$ sudo apt install default-jre
+$ sudo apt install default-jdk
+```
+
+Then download and unzip release file from here
+
+Link : https://github.com/skylot/jadx
+
+As expected when dissasembling the APK, and looking at the Android Manifest, there are meny red flags, about data usage : 
+
+

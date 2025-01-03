@@ -1,0 +1,16 @@
+package c.c.a.b.g.b;
+
+/* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */
+/* loaded from: classes.dex */
+public final /* synthetic */ class r1 implements n3 {
+
+    /* renamed from: a, reason: collision with root package name */
+    public static final n3 f5036a = new r1();
+
+    @Override // c.c.a.b.g.b.n3
+    public final Object zza() {
+        Boolean valueOf;
+        valueOf = Boolean.valueOf(c.c.a.b.f.e.p9.d());
+        return valueOf;
+    }
+}

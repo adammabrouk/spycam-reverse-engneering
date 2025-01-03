@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:lynn="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp">
+    <com.shix.shixipc.utils.RoundCornerImageView
+        android:id="@+id/grid_item"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:src="@mipmap/biz_btn_right_press"
+        android:scaleType="fitXY"
+        lynn:radius="6dp"/>
+    <CheckBox
+        android:id="@+id/grid_cb"
+        android:paddingRight="@dimen/margin_size_2"
+        android:paddingBottom="@dimen/margin_size_4"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="visible"
+        android:clickable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/selector_pw_checkbox"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/grid_item"
+        android:layout_alignParentEnd="true"/>
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/img_video"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/home_btn_play"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
