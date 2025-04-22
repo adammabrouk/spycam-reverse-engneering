@@ -1,4 +1,4 @@
-# SpyInception - IoT Spyware Reverse Engineering Project
+# IoT Spyware Reverse Engineering Project
 
 ![SpyInception Preview](preview.png)
 
