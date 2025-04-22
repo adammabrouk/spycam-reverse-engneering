@@ -1,10 +1,14 @@
-# Spycam Reverse Engineering Project
+# SpyInception - IoT Spyware Reverse Engineering Project
+
+![SpyInception Preview](preview.png)
 
 ## Overview
 
 This project involves reverse engineering a spycam application to understand its functionality, analyze its security implications, and identify potential privacy risks. The analysis includes static and dynamic analysis of the APK, examining the AndroidManifest.xml file, and identifying sensitive permissions and components.
 
 ## Article Preview
+
+[SpyInception Article](article.pdf)
 
 In this article, we delve into the process of reverse engineering the spycam application "LookCamPro". We explore the steps taken to extract the APK, perform static analysis using tools like Jadx-Gui, and analyze the AndroidManifest.xml file for potential security and privacy concerns. The article highlights key findings, including sensitive permissions, excessive background services, and potential privacy risks associated with the application.
 
