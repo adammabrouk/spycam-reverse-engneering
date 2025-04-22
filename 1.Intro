@@ -2,25 +2,24 @@
 - First Make sure you enable developer mode on phone and have adb installed
 - Launch adb devices ( with sudo first time ) and make sure to validate public RSA key from the phone side
 
-
-# Extracting tha APK and performing static analysis
+# Extracting the APK and performing static analysis
 - Try to list packages and grep for the keyword that isolates the APP
 
 ```sh
 $ adb shell pm list packages | grep lookcam
 ```
 
-This is the concerne package we're looking for
+This is the concerned package we're looking for
 
 package:com.shix.lookcam
 
-- Next we'll try to indentify the APK Path for that package
+- Next we'll try to identify the APK Path for that package
 
 ```sh
 adb shell pm path com.shix.lookcam
 ```
 
-This is the location on my phone ( ALready looking weird ) : 
+This is the location on my phone ( Already looking weird ) : 
 
 ```
 /data/app/~~7xU8sC15t0F_ic-GGKFzHg==/com.shix.lookcam-N0VHORpkIPHMiCzq13pHNA==/base.apk
@@ -28,9 +27,9 @@ This is the location on my phone ( ALready looking weird ) :
 
 ## Test setup
 
-### 3.1 Phone Plateform
+### 3.1 Phone Platform
 
-We are using a Samsung galaxy S10 emulated on Genymotion , Android version 11
+We are using a Samsung galaxy S10 emulated on Genymotion, Android version 11
 For app compatibility reasons we have to flash a zip that allows for apps that are ARM compatible
 to be installed on x86_64 architectures.
 
@@ -46,7 +45,7 @@ Download page : https://apkpure.com/fr/lookcampro/com.shix.lookcam;
 
 ### 1. Static Analysis of the APK
 
-Lets try Jadx-Gui to analyse the static code of the apk
+Lets try Jadx-Gui to analyze the static code of the apk
 
 First you need to install JRE / JDK
 
@@ -59,6 +58,46 @@ Then download and unzip release file from here
 
 Link : https://github.com/skylot/jadx
 
-As expected when dissasembling the APK, and looking at the Android Manifest, there are meny red flags, about data usage : 
+As expected when disassembling the APK, and looking at the Android Manifest, there are many red flags, about data usage:
 
+- **Sensitive Permissions**: READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, RECORD_AUDIO, CAMERA, etc.
+- **Excessive Permissions**: Permissions unrelated to the app's stated purpose.
 
+### 2. Services and Receivers
+
+- **Push Services**: Integration with multiple push services (Xiaomi, Huawei, Vivo, Firebase).
+- **Receivers**: Persistent communication with external servers.
+
+### 3. Components and Intent-Filters
+
+- **Exported Components**: Exposed functionality to other apps or attackers.
+- **Intent-Filters**: Handling of URLs, potential for malicious redirection.
+
+### 4. Additional Concerns
+
+- **Overuse of Push and Background Services**: Facilitates malicious operations.
+- **Privacy Risks**: Sensitive permissions with internet access pose severe risks.
+- **Obfuscated Metadata**: Potentially hiding malicious configurations.
+- **Legacy and Deprecated Permissions**: Attempts to bypass modern security constraints.
+
+## Recommendations
+
+### Static Analysis
+
+- Review the codebase for suspicious network calls, hardcoded credentials, encryption keys, or URLs.
+
+### Dynamic Analysis
+
+- Test the app in a controlled environment and monitor network traffic for unusual behavior.
+
+### Permission Audit
+
+- Remove excessive permissions and test the app’s functionality.
+
+### Cross-Reference
+
+- Compare findings with known malware or spyware patterns.
+
+## Conclusion
+
+The app exhibits multiple characteristics of a potentially malicious tool. Sensitive permissions, exported components, and excessive background services strongly suggest a high risk of misuse or abuse. Further analysis in a secure, isolated environment is recommended.
